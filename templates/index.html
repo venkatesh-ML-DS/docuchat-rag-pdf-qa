@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DocuChat - PDF Q&A</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+        h1 { color: #1a56a0; }
+        input, button { padding: 10px; margin: 5px; }
+        button { background: #1a56a0; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        #answer { background: #f0f4ff; padding: 15px; margin-top: 20px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>DocuChat — PDF Q&A System</h1>
+    <h3>Step 1: Upload PDF</h3>
+    <input type="file" id="pdf" accept=".pdf">
+    <button onclick="uploadPDF()">Upload & Process</button>
+    <p id="upload-status"></p>
+    <h3>Step 2: Ask a Question</h3>
+    <input type="text" id="question" placeholder="Ask anything about your PDF..." style="width:400px">
+    <button onclick="askQuestion()">Ask</button>
+    <div id="answer"></div>
+    <script>
+        async function uploadPDF() {
+            const formData = new FormData();
+            formData.append("pdf", document.getElementById("pdf").files[0]);
+            const res = await fetch("/upload", { method: "POST", body: formData });
+            const data = await res.json();
+            document.getElementById("upload-status").innerText = data.message;
+        }
+        async function askQuestion() {
+            const question = document.getElementById("question").value;
+            const res = await fetch("/ask", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question })
+            });
+            const data = await res.json();
+            document.getElementById("answer").innerText = data.answer;
+        }
+    </script>
+</body>
+</html>

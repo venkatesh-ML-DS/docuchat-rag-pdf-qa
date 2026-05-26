@@ -1,4 +1,4 @@
-﻿# docuchat-rag-pdf-qa
+﻿
 # DocuChat — RAG-based PDF Q&A System
 
 A Retrieval-Augmented Generation (RAG) application that allows users to upload PDF documents and ask natural language questions. The system retrieves relevant content from the document and generates accurate answers using Google Gemini AI.
@@ -19,10 +19,29 @@ A Retrieval-Augmented Generation (RAG) application that allows users to upload P
 ## Installation
 
 ```bash
-git clone https://github.com/venkatesh-ML-DS/docuchat-rag-pdf-qa
+git clone https://github.com/venkatesh-ML-DS/docuchat-rag-pdf-qa.git
 cd docuchat-rag-pdf-qa
 pip install -r requirements.txt
 ```
 
 ## Setup
 Create a `.env` file:
+```env
+GEMINI_API_KEY=your_api_key_here
+```
+
+## Run Application
+```bash
+python app.py
+```
+Open `http://127.0.0.1:5000` in your browser.
+
+## Future Improvements
+- Multi-PDF support
+- Chat history
+- Better UI/UX
+- Cloud deployment
+
+## Author
+K M Venkatesh  
+GitHub: https://github.com/venkatesh-ML-DS
